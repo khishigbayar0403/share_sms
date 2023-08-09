@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
-import 'package:provider/provider.dart';
-import 'package:share_sms/providers/theme_provider.dart';
 
 class BottomNavbar extends StatelessWidget {
   const BottomNavbar(
@@ -12,37 +10,31 @@ class BottomNavbar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final themeProvider = Provider.of<ThemeProvider>(context);
-
-    final iconColor = themeProvider.isDark
-        ? themeProvider.isDark
-            ? Theme.of(context).colorScheme.onPrimaryContainer.withAlpha(210)
-            : Theme.of(context).primaryColor
-        : Theme.of(context).primaryColor;
-
-    return Padding(
+    return Container(
+      decoration: BoxDecoration(
+        color: Theme.of(context).colorScheme.surfaceTint.withAlpha(14),
+      ),
       padding: const EdgeInsets.all(16),
       child: GNav(
         hoverColor: Theme.of(context).hoverColor,
         gap: 8,
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
         duration: const Duration(milliseconds: 400),
-        tabBackgroundColor:
-            Theme.of(context).colorScheme.surfaceVariant.withAlpha(120),
-        color: iconColor,
-        activeColor: iconColor,
+        // tabBackgroundColor: Theme.of(context).colorScheme.secondaryContainer,
+        color: Theme.of(context).colorScheme.onSurfaceVariant,
+        activeColor: Theme.of(context).colorScheme.primary,
         tabs: const [
           GButton(
             icon: Icons.message,
-            text: 'Message',
+            text: 'Messages',
           ),
           GButton(
-            icon: Icons.account_circle,
-            text: 'Account',
+            icon: Icons.lan_rounded,
+            text: 'Channels',
           ),
           GButton(
-            icon: Icons.business_outlined,
-            text: 'Company',
+            icon: Icons.notifications,
+            text: 'Notifications',
           )
         ],
         selectedIndex: selectedIndex,

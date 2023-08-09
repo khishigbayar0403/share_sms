@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:share_sms/screens/home/pages/home_page.dart';
+import 'package:share_sms/screens/home/pages/channels_page.dart';
+import 'package:share_sms/screens/home/pages/messages_page.dart';
+import 'package:share_sms/screens/home/pages/notifications_page.dart';
 import 'package:share_sms/widgets/bottom_navbar.dart';
 
 class Home extends StatefulWidget {
@@ -51,19 +53,32 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        appBar: AppBar(
+          // surfaceTintColor: themeProvider.isDark
+          //     ? const Color(0xFF202525)
+          //     : Theme.of(context).colorScheme.background,
+          elevation: 1,
+          // shadowColor: Theme.of(context).colorScheme.onPrimary.withAlpha(100),
+          // backgroundColor: themeProvider.isDark
+          //     ? const Color(0xFF202525)
+          //     : Theme.of(context).colorScheme.background,
+          title: Text(
+            "Home",
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              color: Theme.of(context).colorScheme.onSurfaceVariant,
+            ),
+          ),
+        ),
         bottomNavigationBar: BottomNavbar(
             selectedIndex: _selectedIndex, onChange: bottomNavChange),
         body: PageView(
           controller: pageController,
           onPageChanged: pageViewChange,
           children: const <Widget>[
-            HomePage(),
-            Center(
-              child: Text('Second Page'),
-            ),
-            Center(
-              child: Text('Third Page'),
-            ),
+            MessagesPage(),
+            ChannelsPage(),
+            NotificationsPage(),
           ],
         ));
   }
